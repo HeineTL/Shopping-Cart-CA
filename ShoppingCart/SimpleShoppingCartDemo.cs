@@ -11,17 +11,17 @@
             Product B = new Product("B", 70);
             Product C = new Product("C", 30);
 
-            Product[] products = { A, B, C };
+            //Product[] products = { A, B, C };
 
             List<Orderline> myShoppingCart = new List<Orderline>();
 
-            ShowCart(products, myShoppingCart);
+            ShowCart(myShoppingCart);
             Buy(A, 1, myShoppingCart);
-            ShowCart(products, myShoppingCart);
+            ShowCart(myShoppingCart);
             Buy(B, 3, myShoppingCart);
-            ShowCart(products, myShoppingCart);
+            ShowCart(myShoppingCart);
             Buy(C, 4, myShoppingCart);
-            ShowCart(products, myShoppingCart);
+            ShowCart(myShoppingCart);
         }
 
         private static void Buy(Product product, int amount, List<Orderline> shoppingCart)
@@ -42,7 +42,7 @@
             Console.WriteLine($"Du kjøpte {amount} stk. {product.Name}");
         }
 
-        private static void ShowCart(Product[] products, List<Orderline> orderline)
+        private static void ShowCart(List<Orderline> orderline)
         {
             if (orderline.Count == 0)
             {
@@ -54,11 +54,7 @@
             var totalPrice = 0;
             for (int i = 0; i < orderline.Count; i++)
             {
-                var count = orderline[i].GetCount();
-                var product = orderline[i].GetProduct();
-                var price = product.Price;
-                var orderLinePrice = price * count;
-                Console.WriteLine($"  {count} stk. {product.Name} a kr {products[i].Price} = {orderLinePrice}");
+                int orderLinePrice = orderline[i].ShowLine(orderline[i]);
                 totalPrice += orderLinePrice;
             }
 

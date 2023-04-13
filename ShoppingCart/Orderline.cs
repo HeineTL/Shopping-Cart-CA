@@ -23,6 +23,16 @@ namespace ShoppingCart
             Count += amount;
         }
 
+        public int ShowLine(Orderline orderline)
+        {
+            var count = orderline.GetCount();
+            var product = orderline.GetProduct();
+            var price = product.Price;
+            var orderLinePrice = price * count;
+            Console.WriteLine($"  {count} stk. {product.Name} a kr {price} = {orderLinePrice}");
+            return orderLinePrice;
+        }
+
         public int GetCount() { return Count; }
         public Product GetProduct() { return Product; }
 
