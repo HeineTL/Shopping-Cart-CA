@@ -9,8 +9,8 @@ namespace ShoppingCart
 {
     internal class Orderline
     {
-        private int Count;
-        private Product Product;
+        public int Count { get; private set; }
+        public Product Product { get; private set; }
 
         public Orderline(int count, Product product)
         {
@@ -23,19 +23,13 @@ namespace ShoppingCart
             Count += amount;
         }
 
-        public int ShowLine(Orderline orderline)
+        public int ShowOrderLine()
         {
-            var count = orderline.GetCount();
-            var product = orderline.GetProduct();
-            var price = product.Price;
-            var orderLinePrice = price * count;
-            Console.WriteLine($"  {count} stk. {product.Name} a kr {price} = {orderLinePrice}");
+            var price = Product.Price;
+            var orderLinePrice = price * Count;
+            Console.WriteLine($"  {Count} stk. {Product.Name} a kr {price} = {orderLinePrice}");
             return orderLinePrice;
         }
-
-        public int GetCount() { return Count; }
-        public Product GetProduct() { return Product; }
-
 
     }
 }
